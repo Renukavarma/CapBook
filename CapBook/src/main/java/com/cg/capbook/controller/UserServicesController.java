@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.capbook.beans.Person;
+import com.cg.capbook.exceptions.IncorrectPasswordException;
 import com.cg.capbook.exceptions.UserNotFoundException;
 import com.cg.capbook.services.UserServices;
 
@@ -27,7 +28,7 @@ public class UserServicesController {
 		
 	}
 	@RequestMapping(value="/getUserDetails",produces=MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json")
-	public ResponseEntity<Person>getUserDetails(@RequestParam String emailId,@RequestParam String password ) throws UserNotFoundException{
+	public ResponseEntity<Person>getUserDetails(@RequestParam String emailId,@RequestParam String password ) throws UserNotFoundException, IncorrectPasswordException{
 		Person user=userServices.getUserAccount(emailId,password);
 		return new ResponseEntity<Person>(user, HttpStatus.OK);
 	}

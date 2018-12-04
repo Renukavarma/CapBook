@@ -7,6 +7,17 @@ public class PersonalInfo {
 	private String maritalStatus ;
 	private String  education ;
 	private String address ;
+	
+	public PersonalInfo() {
+	}
+	
+	public PersonalInfo(String maritalStatus, String education, String address) {
+		super();
+		this.maritalStatus = maritalStatus;
+		this.education = education;
+		this.address = address;
+	}
+
 	public String getMaritalStatus() {
 		return maritalStatus;
 	}
