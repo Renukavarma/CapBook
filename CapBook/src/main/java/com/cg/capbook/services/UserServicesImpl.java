@@ -12,19 +12,22 @@ import com.cg.capbook.exceptions.UserNotFoundException;
 public class UserServicesImpl implements UserServices {
 	@Autowired
 private UserDAO userDao;
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@Override
 	public Person createUserAccount(Person user) {
-		userDao.save(user);
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		/*userDao.save(user);
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));*/
 		userDao.save(user);
 		return user;
 	}
 
 	@Override
-	public Person getUserAccount(Person user) throws UserNotFoundException{
-		return userDao.findById(user.getEmailId()).orElseThrow(()->new UserNotFoundException("Sorry User Not Found!!!"));
+	public Person getUserAccount(String emailId,String password) throws UserNotFoundException{
+		Person user=userDao.findById(emailId).orElseThrow(()->new UserNotFoundException("Sorry User Not Found!!!"));
+		/*if(bCryptPasswordEncoder.matches(password, user.getPassword()))*/
+		return user;
+		/*else
+			return null;*/
 	}
 
 }

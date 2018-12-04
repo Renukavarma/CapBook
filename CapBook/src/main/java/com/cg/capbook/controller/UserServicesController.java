@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.capbook.beans.Person;
@@ -26,8 +27,8 @@ public class UserServicesController {
 		
 	}
 	@RequestMapping(value="/getUserDetails",produces=MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json")
-	public ResponseEntity<Person>getUserDetails(@RequestBody Person user) throws UserNotFoundException{
-		userServices.getUserAccount(user);
+	public ResponseEntity<Person>getUserDetails(@RequestParam String emailId,@RequestParam String password ) throws UserNotFoundException{
+		Person user=userServices.getUserAccount(emailId,password);
 		return new ResponseEntity<Person>(user, HttpStatus.OK);
 	}
 

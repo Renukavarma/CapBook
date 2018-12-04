@@ -6,6 +6,6 @@ import com.cg.capbook.exceptions.UserNotFoundException;
 
 public interface UserServices {
 	Person createUserAccount(Person user);
-	Person getUserAccount(Person user) throws UserNotFoundException;
+	Person getUserAccount(String emailId,String password) throws UserNotFoundException;
 
 }
