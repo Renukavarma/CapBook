@@ -15,13 +15,14 @@ public class Person {
 	 private String emailId ;
 	 private String  firstName ;
 	 private String lastName ;
-	 private String dataOfBirth ;
-	 private String phoneNumber ;
+	 private String dateOfBirth ;
+	 private String mobileNo ;
 	 private String gender ;
 	 private String password ;
 	 private String confirmPassword ;
-	 @Embedded
-	 private PersonalInfo personalInfo;
+	 private String maritalStatus;
+		private String  education ;
+		private String address ;
 	 @ManyToOne
 		@JoinColumn(name="friend_id")
 		private Person friend;
@@ -33,26 +34,20 @@ public class Person {
 
 	}
 
-	public Person(String firstName, String lastName, String emailId, String dataOfBirth, String phoneNumber,
+	public Person(String firstName, String lastName, String emailId, String dateOfBirth, String mobileNo,
 			String gender, String password, String confirmPassword) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailId = emailId;
-		this.dataOfBirth = dataOfBirth;
-		this.phoneNumber = phoneNumber;
+		this.dateOfBirth = dateOfBirth;
+		this.mobileNo = mobileNo;
 		this.gender = gender;
 		this.password = password;
 		this.confirmPassword = confirmPassword;
 	}
 
-	public PersonalInfo getPersonalInfo() {
-		return personalInfo;
-	}
-
-	public void setPersonalInfo(PersonalInfo personalInfo) {
-		this.personalInfo = personalInfo;
-	}
+	
 
 	public String getFirstName() {
 		return firstName;
@@ -72,18 +67,6 @@ public class Person {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	public String getDataOfBirth() {
-		return dataOfBirth;
-	}
-	public void setDataOfBirth(String dataOfBirth) {
-		this.dataOfBirth = dataOfBirth;
-	}
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
 	public String getGender() {
 		return gender;
 	}
@@ -102,10 +85,53 @@ public class Person {
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
+	
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getMobileNo() {
+		return mobileNo;
+	}
+
+	public void setMobileNo(String mobileNo) {
+		this.mobileNo = mobileNo;
+	}
+
 	@Override
 	public String toString() {
-		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId + ", dataOfBirth="
-				+ dataOfBirth + ", phoneNumber=" + phoneNumber + ", gender=" + gender + ", password=" + password
+		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId + ", dateOfBirth="
+				+ dateOfBirth + ", mobileNo=" + mobileNo + ", gender=" + gender + ", password=" + password
 				+ ", confirmPassword=" + confirmPassword + "]";
 	}
+
+	public String getMaritalStatus() {
+		return maritalStatus;
+	}
+
+	public void setMaritalStatus(String maritalStatus) {
+		this.maritalStatus = maritalStatus;
+	}
+
+	public String getEducation() {
+		return education;
+	}
+
+	public void setEducation(String education) {
+		this.education = education;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	
 }

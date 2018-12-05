@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.cg.capbook.beans.Person;
-import com.cg.capbook.beans.PersonalInfo;
 import com.cg.capbook.daoservices.UserDAO;
 import com.cg.capbook.exceptions.IncorrectPasswordException;
 import com.cg.capbook.exceptions.UserNotFoundException;
@@ -28,9 +27,11 @@ private UserDAO userDao;
 	}
 
 	@Override
-	public Person UpdatePersonalInfo(String emailId,PersonalInfo personalInfo) throws UserNotFoundException {
-		Person user=userDao.findById(emailId).orElseThrow(()->new UserNotFoundException("Sorry User Details Not Found!!!"));
-		user.setPersonalInfo(personalInfo);
+	public Person UpdatePersonalInfo(String emailId,String maritalStatus,String education,String address) throws UserNotFoundException {
+		Person user=userDao.findById(emailId).orElseThrow(()->new UserNotFoundException("Sorry User Not Found!!!")); 
+		user.setMaritalStatus(maritalStatus);
+		user.setAddress(address);
+		user.setEducation(education);
 		return userDao.save(user);
 	}
 
