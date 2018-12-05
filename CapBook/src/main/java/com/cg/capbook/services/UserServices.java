@@ -9,6 +9,7 @@ import com.cg.capbook.exceptions.UserNotFoundException;
 public interface UserServices {
 	Person createUserAccount(Person user);
 	Person getUserAccount(String emailId,String password) throws UserNotFoundException, IncorrectPasswordException;
-	String UpdatePersonalInfo(String emailId, PersonalInfo personalInfo) throws UserNotFoundException;
+	Person getUserAccountDetails(String emailId) throws UserNotFoundException;
+	Person UpdatePersonalInfo(String emailId, PersonalInfo personalInfo) throws UserNotFoundException;
 
 }

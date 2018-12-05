@@ -15,8 +15,7 @@ private UserDAO userDao;
 	
 	@Override
 	public Person createUserAccount(Person user) {
-		userDao.save(user);
-		return user;
+		return userDao.save(user);
 	}
 
 	@Override
@@ -29,9 +28,15 @@ private UserDAO userDao;
 	}
 
 	@Override
-	public String UpdatePersonalInfo(String emailId,PersonalInfo personalInfo) throws UserNotFoundException {
+	public Person UpdatePersonalInfo(String emailId,PersonalInfo personalInfo) throws UserNotFoundException {
 		Person user=userDao.findById(emailId).orElseThrow(()->new UserNotFoundException("Sorry User Details Not Found!!!"));
-		return null;
+		user.setPersonalInfo(personalInfo);
+		return userDao.save(user);
+	}
+
+	@Override
+	public Person getUserAccountDetails(String emailId) throws UserNotFoundException {
+		return userDao.findById(emailId).orElseThrow(()->new UserNotFoundException("Sorry User Details Not Found!!!"));
 	}
 
 }

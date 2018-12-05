@@ -1,8 +1,13 @@
 package com.cg.capbook.beans;
 
+import java.util.List;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Person {
@@ -17,6 +22,11 @@ public class Person {
 	 private String confirmPassword ;
 	 @Embedded
 	 private PersonalInfo personalInfo;
+	 @ManyToOne
+		@JoinColumn(name="friend_id")
+		private Person friend;
+		@OneToMany(mappedBy="friend")
+		private List<Person> friendList;
 	 
 	 
 	public Person() {
