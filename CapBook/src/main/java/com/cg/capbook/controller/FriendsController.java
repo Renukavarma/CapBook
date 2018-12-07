@@ -23,12 +23,13 @@ import com.cg.capbook.services.UserServices;
 public class FriendsController {
 	@Autowired
 	UserServices userServices;
+	private String message;
 	@RequestMapping(value="/friendRequest",method=RequestMethod.GET)
-	public ResponseEntity<Friends> friendRequest(@RequestParam("senderEmailId") String senderEmailId,@RequestParam("recieverEmailId") String recieverEmailId){
+	public ResponseEntity<String> friendRequest(@RequestParam("senderEmailId") String senderEmailId,@RequestParam("recieverEmailId") String recieverEmailId){
 
 			try {
-				Friends friends=userServices.friendRequest(senderEmailId, recieverEmailId);
-				return new ResponseEntity<>(friends,HttpStatus.OK);
+				 message=userServices.friendRequest(senderEmailId, recieverEmailId);
+				return new ResponseEntity<>(message,HttpStatus.OK);
 			} catch (UserNotFoundException e) {
 				return null;
 			}
@@ -54,6 +55,11 @@ public class FriendsController {
 
 			List<Friends> friendRequests=userServices.friendRequests(emailId);
 			return new ResponseEntity<>(friendRequests,HttpStatus.OK);
+	}
+	@RequestMapping(value="/findNewFriends",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json")
+	public ResponseEntity<List<Person>> findNewFriends(@RequestParam("emailId") String emailId) throws UserNotFoundException{
+			List<Person> friends=userServices.findFriends(emailId);
+			return new ResponseEntity<>(friends,HttpStatus.OK);
 	}
 
 }

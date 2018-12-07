@@ -46,12 +46,12 @@ private UserDAO userDao;
 		return userDao.findById(emailId).orElseThrow(()->new UserNotFoundException("Sorry User Details Not Found!!!"));
 	}
 	@Override
-	public Friends friendRequest(String senderEmailId, String recieverEmailId) throws UserNotFoundException {
+	public String friendRequest(String senderEmailId, String recieverEmailId) throws UserNotFoundException {
 		Person sender=userDao.findById(senderEmailId).orElseThrow(()->new UserNotFoundException("Sorry User Details Not Found!!!"));
 		Person reciever=userDao.findById(recieverEmailId).orElseThrow(()->new UserNotFoundException("Sorry User Details Not Found!!!"));
 		Friends friends=new Friends(sender, reciever, false); 
 		friendsDAO.save(friends);
-		return friends;
+		return "Friend Request sent";
 	}
 
 	@Override
@@ -77,6 +77,15 @@ private UserDAO userDao;
 		List<Friends> friendrequests = friendsDAO.findFriendRequests(person);
 		return friendrequests;
 	}
-
 	
+	
+	@Override
+	public List<Person> findFriends(String emailId) throws UserNotFoundException {
+		Person person = getUserAccountDetails(emailId);
+		List<Person> friends= userDao.findNewFriends(emailId);
+		friends.removeAll(friendList(emailId));
+		friends.removeAll(friendsDAO.findRequestedFriendsNotApproved(person));
+		friends.removeAll(friendRequests(emailId));
+		return friends;
+	}
 }

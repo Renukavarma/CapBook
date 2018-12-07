@@ -13,8 +13,9 @@ public interface UserServices {
 	Person getUserAccount(String emailId,String password) throws UserNotFoundException, IncorrectPasswordException;
 	Person getUserAccountDetails(String emailId) throws UserNotFoundException;
 	Person UpdatePersonalInfo(String emailId,String maritalStatus,String education,String address) throws UserNotFoundException;
-	Friends friendRequest(String senderEmailId, String recieverEmailId) throws UserNotFoundException;
+	String friendRequest(String senderEmailId, String recieverEmailId) throws UserNotFoundException;
 	Friends acceptFriendRequest(String senderEmailId, String recieverEmailId) throws UserNotFoundException;
 	List<Person> friendList(String emailId) throws UserNotFoundException;
 	List<Friends> friendRequests(String emailId) throws UserNotFoundException;
+	List<Person> findFriends(String emailId) throws UserNotFoundException;
 }
