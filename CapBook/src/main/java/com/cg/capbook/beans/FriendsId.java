@@ -33,7 +33,4 @@ public class FriendsId implements Serializable{
 		this.sender = sender;
 		this.reciever = reciever;
 	}
-
-	
-
 }
