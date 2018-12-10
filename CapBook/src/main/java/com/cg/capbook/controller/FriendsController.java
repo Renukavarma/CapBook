@@ -44,6 +44,16 @@ public class FriendsController {
 				return null;
 			}	
 	}
+	@RequestMapping(value="/rejectFriendRequest",method=RequestMethod.GET)
+	public ResponseEntity<String> rejectFriendRequest(@RequestParam("senderEmailId") String senderEmailId){
+
+			try {
+				userServices.rejectFriendRequest(senderEmailId);
+				return new ResponseEntity<>("Rejected friend Request",HttpStatus.OK);
+			} catch (UserNotFoundException e) {
+				return null;
+			}	
+	}
 	@RequestMapping(value="/findFriends",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json")
 	public ResponseEntity<List<Person>> findFriends(@RequestParam("emailId") String emailId) throws UserNotFoundException{
 
