@@ -57,8 +57,12 @@ public class UserServicesImpl implements UserServices {
 
 	@Override
 	public Person createUserAccount(Person user) {
+		if(user.getPassword().compareTo(user.getConfirmPassword())==0) {
 		user.setPassword(generateHash(user.getPassword()));
 		return userDao.save(user);
+		}
+		else
+			return null;
 	}
 
 	@Override
@@ -191,7 +195,7 @@ public class UserServicesImpl implements UserServices {
 		Person user=userDao.findById(emailId).orElseThrow(()->new UserNotFoundException("Sorry User Details Not Found!!!"));
 		if(user.getSecurityAnswer1().equalsIgnoreCase(securityAnswer1)&&user.getSecurityAnswer2().equalsIgnoreCase(securityAnswer2)) {
 			if(newPassword.equals(confirmNewPassword)) {
-				user.setPassword(newPassword);
+				user.setPassword(generateHash(newPassword));
 				return userDao.save(user);
 			}
 			else

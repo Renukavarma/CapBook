@@ -15,5 +15,4 @@ public interface MessageDAO extends JpaRepository<Messages, Integer>{
 	List<Messages> findSentMessages(@Param("sender") Person sender);
 	@Query("select a from Messages a where a.reciever=:reciever ")
 	List<Messages>findRecievedMessages(@Param("reciever") Person reciever);
-
 }

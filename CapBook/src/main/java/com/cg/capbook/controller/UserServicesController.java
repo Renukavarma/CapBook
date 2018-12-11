@@ -38,8 +38,7 @@ public class UserServicesController {
 	public ResponseEntity<String>createUser(@RequestBody Person user){
 		userServices.createUserAccount(user);
 		return new ResponseEntity<>("User signup successfull", HttpStatus.OK);
-		
-	}
+		}
 	@RequestMapping(value="/getUserDetails",produces=MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json")
 	public ResponseEntity<Person>getUserDetails(@RequestParam String emailId,@RequestParam String password ) throws UserNotFoundException, IncorrectPasswordException{
 		Person user=userServices.getUserAccount(emailId,password);

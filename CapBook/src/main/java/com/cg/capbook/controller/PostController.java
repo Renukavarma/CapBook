@@ -39,7 +39,6 @@ public class PostController {
 		try {
 			return new ResponseEntity<>(userServices.getAllPosts(),HttpStatus.OK);
 		} catch (UserNotFoundException e) {
-			
 			return new ResponseEntity<>(HttpStatus.OK);
 		}	
 	}
